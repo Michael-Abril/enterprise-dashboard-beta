@@ -21,9 +21,10 @@
     "@varity-labs/types": "^2.0.0-beta.4",
     "@varity-labs/ui-kit": "^2.0.0-beta.7",
     "lucide-react": "^0.400.0",
-    "next": "^15.0.0",
+    "next": "15.5.15",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "viem": "^2.7.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
