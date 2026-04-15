@@ -1,19 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   images: { unoptimized: true },
-  trailingSlash: true,
   productionBrowserSourceMaps: false,
   webpack: (config, { isServer, dev }) => {
-    // Suppress spurious peer-dep warning from async-storage
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      '@react-native-async-storage/async-storage': false,
-    };
-    // Force production devtool to avoid 35MB eval-source-map chunks
-    if (!dev && !isServer) {
-      config.devtool = false;
-    }
+    // Suppress unused optional peer dependencies from UI Kit internals
+    ['@react-native-async-storage/async-storage', '@solana/kit', '@solana/sysvars', '@solana-program/token-2022', 'x402', '@coinbase/wallet-sdk', '@walletconnect/ethereum-provider'].forEach(pkg => { config.resolve.alias[pkg] = false; });
+    if (!dev && !isServer) config.devtool = false;
     return config;
   },
 };
